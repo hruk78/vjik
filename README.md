@@ -1,8 +1,41 @@
 # vjik
 Построение Модели
+
 a) XGBoostTree.saveModel.iterPy3.py переписана на третьем Python.
 Запуск скриптом oldICML.max.min.only_predict.fast.5K.pl
-б)
+1 - max_depth;
+2 - eta;
+3 - subsample;
+4 - colsample_bytree;
+5 - colsample_bylevel;
+6 - min_child_weight;
+7 -gamma;
+8 -alpha;
+9 - reg_alpha;
+10 - lambdaParam;
+11 - eval_metric;
+12 - scale_pos_weight;
+далее разные директории с данными
+
+б) Или скрипт на С ./makemodel из исходников makemodel.c, который запускается скриптом 
+2ICML.max.min.only_predict.Jan2021.pl. В этом скрипте на 13-ый параметр количество потоков хgboost. Добавлен параметр количества потоков для хgboost.
+
+параметры
+1 - max_depth;
+2 - eta;
+3 - subsample;
+4 - colsample_bytree;
+5 - colsample_bylevel;
+6 - min_child_weight;
+7 -gamma;
+8 -alpha;
+9 - reg_alpha;
+10 - lambdaParam;
+11 - eval_metric;
+12 - scale_pos_weight;
+13 - nthread;
+далее разные директории с данными
+
 
 
 1)
