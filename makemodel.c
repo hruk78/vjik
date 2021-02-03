@@ -1522,6 +1522,7 @@ int ReadTwoColFromFileMtoN(const char* Name, char** StrCol1, char** StrCol2,int 
 	char* debug=NULL;
 	size_t len = 0;
 	int len_str=0;
+	int firstIsPresent=0;
 	int len_str_max=0;
 	int ItemInSrc1=0, ItemInSrc2=0;
 FPrintCOut("result.log","ReadTwoColFromFileMtoN 1112\n");		
@@ -1559,17 +1560,18 @@ FPrintCOut("result.log","ReadTwoColFromFileMtoN 1112\n");
 					DeleteLastN(toSearchFor);
 					ItemInSrc1=FindStrInKeyStrColIntMtrx(toSearchFor, src1);
 					ItemInSrc2=FindStrInKeyStrColIntMtrx(toSearchFor, src2);
-				if (ItemInSrc1 > -1 || ItemInSrc2 > -1)
+				//if (ItemInSrc1 > -1 || ItemInSrc2 > -1)
 				{
-					if (i==0) 
+					if (i==0 && ItemInSrc1 > -1) 
 					{ 
 						StrCol1[amount_str] = (char*)malloc((strlen(*(tokens + i))+1)*sizeof(char*));
 						if (StrCol1[amount_str])
 						{
 							strcpy(StrCol1[amount_str], *(tokens + i));
+							firstIsPresent=1;
 						} else printf("Failed to allocate in ReadKnownTwoKeyColFromFile-2\n");
 					}
-					else if (i==1)
+					else if (i==1 && ItemInSrc2 > -1 && firstIsPresent==1)
 					{
 						StrCol2[amount_str] = (char*)malloc((strlen(*(tokens + i))+1)*sizeof(char*));
 						if (StrCol2[amount_str])
@@ -1577,24 +1579,20 @@ FPrintCOut("result.log","ReadTwoColFromFileMtoN 1112\n");
 							strcpy(StrCol2[amount_str], *(tokens + i));
 						} else printf("Failed to allocate in ReadKnownTwoKeyColFromFile-3\n");
 					}
+					else if (i == 0 || i == 1)
+						{
+							if (firstIsPresent==1) free(StrCol1[amount_str]);
+							dropped_str=1;
+						}
+						
 				} 
-				else 
-				{
-					//printf("Doesn`t added %s %d %d ",StrCol1[amount_str], ItemInSrc1,ItemInSrc2);
-					//dropped_str++;
-					free(*(tokens + i));
-					free(toSearchFor);
-					if (i==1) free(StrCol1[amount_str]);
-					amount_str=amount_str-1;
-					break;
-				}
-
 				free(*(tokens + i));
 				free(toSearchFor);
 			}
 			free(tokens);
 		}
-		amount_str++;
+		
+		amount_str=amount_str+1-dropped_str;
 		//asprintf(&debug,"%zu",);	
 		//FPrintCOut("result.log","ReadTwoColFromFileMtoN 1 str read\n");
 		//free(debug);
@@ -2904,7 +2902,7 @@ int main(int argc, char** argv)
 		//ReadTwoKeyColFromFile(fileCurrFold[curr_fold],gNamsByFold[curr_fold].StrCol1,gNamsByFold[curr_fold].StrCol2,&len_str_max7, &amount_str7);
 		amount_strOld=amount_str8;
 		ReadKnownTwoKeyColFromFile(fileCurrNegFold[curr_fold],gNamsByNegFold[curr_fold].StrCol1,gNamsByNegFold[curr_fold].StrCol2,&len_str_max8, &amount_str8,sp1Espr,sp2Espr);
-		if (amount_strOld != amount_str7)
+		if (amount_strOld != amount_str8)
 		{
 			gNamsByNegFold[curr_fold].StrCol1 = (char**)realloc(gNamsByNegFold[curr_fold].StrCol1,sizeof(char*) * (amount_str8));
 			gNamsByNegFold[curr_fold].StrCol2 = (char**)realloc(gNamsByNegFold[curr_fold].StrCol2,sizeof(char*) * (amount_str8));
@@ -3143,7 +3141,7 @@ ApndTStColTSColl(gNamsByNegFold[foldJ].StrCol1,gNamsByNegFold[foldJ].StrCol2,gNa
 		  
 	    const char* eval_names[1] = {"train"};
 		const char* eval_result = NULL;
-		for (int iii = 0; iii < 50; ++iii) 
+		for (int iii = 0; iii < numIterations; ++iii) 
 		{
 			safe_xgboost(XGBoosterUpdateOneIter(h_booster, iii, h_train));
 			//safe_xgboost(XGBoosterEvalOneIter(h_booster, iii, eval_dmats, eval_names, 1, &eval_result));
@@ -3243,11 +3241,11 @@ ApndTStColTSColl(gNamsByNegFold[foldJ].StrCol1,gNamsByNegFold[foldJ].StrCol2,gNa
 
 
 	//train
-	int n_trees = numIterations;
+	//int n_trees = numIterations;
 	//for (int iii = 0; iii < n_trees; ++iii) 
 	    const char* eval_names[1] = {"train"};
 		const char* eval_result = NULL;
-		for (int iii = 0; iii < 50; ++iii) 
+		for (int iii = 0; iii < numIterations; ++iii) 
 		{
 			safe_xgboost(XGBoosterUpdateOneIter(h_booster, iii, h_train));
 			//safe_xgboost(XGBoosterEvalOneIter(h_booster, iii, eval_dmats, eval_names, 1, &eval_result));
