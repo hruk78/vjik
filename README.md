@@ -1,4 +1,7 @@
 # vjik
+Этот проект продолжение на языке си проекта 
+https://github.com/ArtemKasianov/ICML
+
 Построение Модели
 
 a) XGBoostTree.saveModel.iterPy3.py переписана на третьем Python.
