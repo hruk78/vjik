@@ -127,10 +127,26 @@ find -name "expression.other.predictions" -print0 -type f | sort -z | xargs -0 w
 В итоге получился файл медианы предсказаний весов для всех генных пар. Далее смотрим кластеризация с помнощью пакета скриптов, в которых реализован метод маркова для поиска кластеров в графе. Описание и сами скрипты на сайте 
 https://micans.org/mcl/
 
-Сперва генерим двай фала, один файл с матрицей весов для всех пар генов, а другой с обозначениями. Это сократит размер данных от 40 ГБ до 20 ГБ и преобразует их к универсальному матричному виду.
+Далее можно провести догенерацию пар для положительной и отрицательной выборок, чтобы построить ROC кривую и дописать эти значения в файл весов геннных пар, однако эту рутинную процедуру стоит делать только в том случае, если предварительно будут найдены в необходимом количестве кластера. 
+
+Пока же мы проверим наличие кластеров. Для этого генерим двай фала, один файл с матрицей весов для всех пар генов, а другой с обозначениями. Это сократит размер данных от 40 ГБ до 20 ГБ и преобразует их к универсальному матричному виду.
 
 mcxload -abc medians.txt --stream-mirror --write-binary -write-tab medians.tab -o medians.mci
+Далее ищем кластеры при разных инфляциях, на 48 ядрах, памяти требуется 20 ГБ, по размеру файла с матрицей medNewParFeb.mci 
 
+mcl medNewParFeb.mci -t 48 -I 10.0 -use-tab medNewParFeb.tab -o medBnI100.txt
+mcl medNewParFeb.mci -t 48 -I 8.0 -use-tab medNewParFeb.tab -o medBnI90.txt
+mcl medNewParFeb.mci -t 48 -I 8.0 -use-tab medNewParFeb.tab -o medBnI80.txt
+mcl medNewParFeb.mci -t 48 -I 7.0 -use-tab medNewParFeb.tab -o medBnI70.txt
+mcl medNewParFeb.mci -t 48 -I 6.0 -use-tab medNewParFeb.tab -o medBnI60.txt
+mcl medNewParFeb.mci -t 48 -I 5.0 -use-tab medNewParFeb.tab -o medBnI50.txt
+mcl medNewParFeb.mci -t 48 -I 4.0 -use-tab medNewParFeb.tab -o medBnI40.txt
+mcl medNewParFeb.mci -t 48 -I 3.0 -use-tab medNewParFeb.tab -o medBnI30.txt
+mcl medNewParFeb.mci -t 48 -I 2.0 -use-tab medNewParFeb.tab -o medBnI20.txt
+mcl medNewParFeb.mci -t 48 -I 1.8 -use-tab medNewParFeb.tab -o medBnI18.txt
+mcl medNewParFeb.mci -t 48 -I 1.0 -use-tab medNewParFeb.tab -o medBnI10.txt
+
+Если класте
 
 
 (продолжение следует)
