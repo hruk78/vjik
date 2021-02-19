@@ -3,9 +3,16 @@
 https://github.com/ArtemKasianov/ICML
 
 Построение Модели
+0) Изначально запускается скрипт на Perl, который строит исходные директории и модель с заданными параметрами либо с помощью скрипта на питоне, либо его аналога, написанного на С. Запуски изначального скрипта
+perl oldICML.max.min.only_predict.fast.5K.pl ATH_MAP_INFECTION_LEAF_ROOT_STRESS_VITAMIN.txt ZEA_MAP_INFECTION_LEAF_ROOT_STRESS_VITAMIN.txt Ath_vs_Mazie.gt_0.sim orthopairs.ath.zm.txt 0 100
+1 и 2 - карты экспрессии генов
+3 - рудиментарный параметр, оставленный для обратной совместимости
+4 - списко отропар
+5 и 6 количесвто итераций для набора отрицательной выборки.
 
 a) XGBoostTree.saveModel.iterPy3.py переписана на третьем Python.
 Запуск скриптом oldICML.max.min.only_predict.fast.5K.pl
+параметры внутри скрипта
 1 - max_depth;
 2 - eta;
 3 - subsample;
