@@ -21,10 +21,11 @@ a) XGBoostTree.saveModel.iterPy3.py переписана на третьем Pyt
 6 - min_child_weight;
 7 -gamma;
 8 -alpha;
-9 - reg_alpha;
-10 - lambdaParam;
+9 - lambdaParam;
+10 - train iteration number;
 11 - eval_metric;
 12 - scale_pos_weight;
+13 - numberOfProcessor Cores
 далее разные директории с данными,
 последние два параметра - это параметра формата генов в текстовых фалов, есть ли табуляции или пробелы в конце первой группы генов и второй, если есть - оба нули. 
 
@@ -40,11 +41,11 @@ a) XGBoostTree.saveModel.iterPy3.py переписана на третьем Pyt
 6 - min_child_weight;
 7 -gamma;
 8 -alpha;
-9 - reg_alpha;
-10 - lambdaParam;
+9 - lambdaParam;
+10 - train iteration number;
 11 - eval_metric;
 12 - scale_pos_weight;
-13 - nthread;
+13 - numberOfProcessor Cores
 далее разные директории с данными
 последние два параметра - это параметра формата генов в текстовых фалов - оставлены для обратной соместимости и сейчас в Си-алгоритме не используются, так как вопрос решается автоматически - лишние символы табуляции и пробелы удалаятся. 
 
