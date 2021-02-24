@@ -1,0 +1,54 @@
+TPR=0.973 FPR=0.411 Threshold=0.10
+       | Real P | Real N |
+Pred P | Tp=97%  | Fp=41%  |
+Pred N | Fn=3%  | Tn=59%  |
+       |Tp+Fn=5922|Fp+Tn=520201|
+
+TPR=0.952 FPR=0.323 Threshold=0.20
+       | Real P | Real N |
+Pred P | Tp=95%  | Fp=32%  |
+Pred N | Fn=5%  | Tn=68%  |
+       |Tp+Fn=5922|Fp+Tn=520201|
+
+TPR=0.933 FPR=0.271 Threshold=0.30
+       | Real P | Real N |
+Pred P | Tp=93%  | Fp=27%  |
+Pred N | Fn=7%  | Tn=73%  |
+       |Tp+Fn=5922|Fp+Tn=520201|
+
+TPR=0.916 FPR=0.230 Threshold=0.40
+       | Real P | Real N |
+Pred P | Tp=92%  | Fp=23%  |
+Pred N | Fn=8%  | Tn=77%  |
+       |Tp+Fn=5922|Fp+Tn=520201|
+
+TPR=0.896 FPR=0.194 Threshold=0.50
+       | Real P | Real N |
+Pred P | Tp=90%  | Fp=19%  |
+Pred N | Fn=10%  | Tn=81%  |
+       |Tp+Fn=5922|Fp+Tn=520201|
+
+TPR=0.872 FPR=0.159 Threshold=0.60
+       | Real P | Real N |
+Pred P | Tp=87%  | Fp=16%  |
+Pred N | Fn=13%  | Tn=84%  |
+       |Tp+Fn=5922|Fp+Tn=520201|
+
+TPR=0.834 FPR=0.124 Threshold=0.70
+       | Real P | Real N |
+Pred P | Tp=83%  | Fp=12%  |
+Pred N | Fn=17%  | Tn=88%  |
+       |Tp+Fn=5922|Fp+Tn=520201|
+
+TPR=0.767 FPR=0.086 Threshold=0.80
+       | Real P | Real N |
+Pred P | Tp=77%  | Fp=9%  |
+Pred N | Fn=23%  | Tn=91%  |
+       |Tp+Fn=5922|Fp+Tn=520201|
+
+TPR=0.613 FPR=0.039 Threshold=0.90
+       | Real P | Real N |
+Pred P | Tp=61%  | Fp=4%  |
+Pred N | Fn=39%  | Tn=96%  |
+       |Tp+Fn=5922|Fp+Tn=520201|
+

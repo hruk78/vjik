@@ -1,0 +1,54 @@
+[hruk@node36 make_model]$ cat ROC.txt
+TPR=0.975 FPR=0.435 Threshold=0.10
+       | Real P | Real N |
+Pred P | Tp=97%  | Fp=44%  |
+Pred N | Fn=3%  | Tn=56%  |
+       |Tp+Fn=5922|Fp+Tn=525403|
+
+TPR=0.965 FPR=0.382 Threshold=0.20
+       | Real P | Real N |
+Pred P | Tp=96%  | Fp=38%  |
+Pred N | Fn=4%  | Tn=62%  |
+       |Tp+Fn=5922|Fp+Tn=525403|
+
+TPR=0.956 FPR=0.351 Threshold=0.30
+       | Real P | Real N |
+Pred P | Tp=96%  | Fp=35%  |
+Pred N | Fn=4%  | Tn=65%  |
+       |Tp+Fn=5922|Fp+Tn=525403|
+
+TPR=0.950 FPR=0.327 Threshold=0.40
+       | Real P | Real N |
+Pred P | Tp=95%  | Fp=33%  |
+Pred N | Fn=5%  | Tn=67%  |
+       |Tp+Fn=5922|Fp+Tn=525403|
+
+TPR=0.942 FPR=0.307 Threshold=0.50
+       | Real P | Real N |
+Pred P | Tp=94%  | Fp=31%  |
+Pred N | Fn=6%  | Tn=69%  |
+       |Tp+Fn=5922|Fp+Tn=525403|
+
+TPR=0.934 FPR=0.286 Threshold=0.60
+       | Real P | Real N |
+Pred P | Tp=93%  | Fp=29%  |
+Pred N | Fn=7%  | Tn=71%  |
+       |Tp+Fn=5922|Fp+Tn=525403|
+
+TPR=0.925 FPR=0.265 Threshold=0.70
+       | Real P | Real N |
+Pred P | Tp=93%  | Fp=27%  |
+Pred N | Fn=7%  | Tn=73%  |
+       |Tp+Fn=5922|Fp+Tn=525403|
+
+TPR=0.915 FPR=0.240 Threshold=0.80
+       | Real P | Real N |
+Pred P | Tp=91%  | Fp=24%  |
+Pred N | Fn=9%  | Tn=76%  |
+       |Tp+Fn=5922|Fp+Tn=525403|
+
+TPR=0.892 FPR=0.203 Threshold=0.90
+       | Real P | Real N |
+Pred P | Tp=89%  | Fp=20%  |
+Pred N | Fn=11%  | Tn=80%  |
+       |Tp+Fn=5922|Fp+Tn=525403|
