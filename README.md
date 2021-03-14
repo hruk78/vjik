@@ -10,6 +10,18 @@ https://github.com/ArtemKasianov/ICML
 	//safe_xgboost(XGBoosterSetParam(h_booster,"tree_method", "gpu_hist"));
 По моим наблюдениям в первую очередь скорость работы xgboost зависит от количества потоков процессора, чем от наличия видеокарты. Однако это зависит от остального железа. Я сравнивал vjik на 24 ядерном узле node32 с Nvidia RTX 2080 Ti с 40 Гб и на 80 ядерном узле с 2 Tb оперативной памяти. Эмпирическая оценка с поправками на разницу в железе даёт от 2 до 4 раз ускорение выполнения.
 
+Для запуска vjik на узлах с использованием gpu полезно иметь скомпилированную с использованием gpu в отдельной директории и задавать путь к библиотеке прямо в файле задачи, например, для запуска генерации предсказаний для положительной и отрицательной выборок:
+
+#!/bin/bash
+#PBS -l walltime=60:00:00,mem=40gb
+#PBS -d .
+export LD_LIBRARY_PATH=~/xgboostGPU/lib:$LD_LIBRARY_PATH
+export PATH=~/xgboostGPU/lib:$PATH
+./PositivPairsMedianaForROCnv ATH.selected_samples.txt ZEA.selected_samples.txt 0 100 0 22
+./NegativPairsForRocnv ATH.selected_samples.txt ZEA.selected_samples.txt 0 100 0 22
+Далее загрузку видеокарты можно смотреть на соответствующем узле командой
+nvidia-smi -l 1
+
 Я тестировал эти скрипты на двух системах: 
 1) Linux 2.6.32-573.12.1.el6.x86_64 - основная, до 80 ядер, до 2 ТB оперативной памяти, дисковое пространство ~5 Tb, распределенная дисковая система lustre, узел node36 на кластере https://makarich.fbb.msu.ru/ (а), там же узел node32 Nvidia RTX 2080 Ti c 40 Гб оперативной памяти и 24 ядрами (б).
 3) CYGWIN_NT-6.3 geronimo 3.1.0(0.340/5/3) 2019-12-10 23:47 x86_64 Cygwin - тестовая система 4 ядра, 30 Гб оперативки и 1 Тб SSD жесткий диск.
