@@ -12,9 +12,6 @@ https://github.com/ArtemKasianov/ICML
 
 Для запуска vjik на узлах с использованием gpu полезно иметь скомпилированную с использованием gpu в отдельной директории и задавать путь к библиотеке прямо в файле задачи, например, для запуска генерации предсказаний для положительной и отрицательной выборок:
 
-#!/bin/bash
-#PBS -l walltime=60:00:00,mem=40gb
-#PBS -d .
 export LD_LIBRARY_PATH=~/xgboostGPU/lib:$LD_LIBRARY_PATH
 export PATH=~/xgboostGPU/lib:$PATH
 ./PositivPairsMedianaForROCnv ATH.selected_samples.txt ZEA.selected_samples.txt 0 100 0 22
